@@ -1,4 +1,4 @@
-FROM nginx:1.13
+FROM arm32v7/nginx:1.13
 
 COPY ./default.txt /etc/nginx/conf.d/default.conf
 COPY ./dist /var/www/dist
