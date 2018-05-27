@@ -1,3 +1,4 @@
+
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
@@ -18,8 +19,7 @@ server {
 	#
 	# include snippets/snakeoil.conf;
 
-	# root /var/www/html
-	root /var/www/dist;
+	root /var/www/html;
 
 	# Add index.php to the list if you are using PHP
 	# index index.html index.htm index.nginx-debian.html;
@@ -27,19 +27,11 @@ server {
 
 	server_name _;
 
-	location / {
+	location /50x15 {
+		alias /var/www/50x15/dist;
+	        index index.html;
 		try_files $uri $uri/ =404;
 	}	
-
-	#location / {
-	#	# First attempt to serve request as file, then
-	#	# as directory, then fall back to displaying a 404.
-	#        proxy_pass http://localhost:4200/;
-	#	proxy_http_version 1.1;
-	#	proxy_set_header Upgrade $http_upgrade;
-	#	proxy_set_header Connection "upgrade";
-	#	proxy_set_header Host $host;
-	#}
 
 	location /game {
                 proxy_pass http://server:3000/game;
